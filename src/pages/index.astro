@@ -3,17 +3,20 @@ import Layout from "../layouts/Layout.astro";
 
 import SocialItem from "../components/SocialItem.astro";
 import Badge from "../components/Badge.astro";
+import Experience from "../components/Experience.astro";
+import SectionContainer from "../components/SectionContainer.astro";
 
 import LinkedInIcon from "../icons/LinkedIn.astro";
 import GithubIcon from "../icons/Github.astro";
 import GmailIcon from "../icons/Gmail.astro";
+import BriefCaseIcon from "../icons/BriefCase.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout title="Porfolio de Manuel - Desarrollador Full Stack">
   <main>
-    <section class="w-full mx-auto lg:w-185 py-44">
+    <SectionContainer id="top" class="py-44 pb-20">
       <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-5">
         Hola, soy Manuel
         <a
@@ -47,6 +50,15 @@ import GmailIcon from "../icons/Gmail.astro";
           ><GmailIcon class="size-6" />manuelromeroreyes.mrr@gmail.com
         </SocialItem>
       </nav>
-    </section>
+    </SectionContainer>
+
+    <SectionContainer id="experiencia">
+      <h2
+        class="text-2xl font-semibold text-white mb-4 flex items-center gap-x-2"
+      >
+        <BriefCaseIcon class="size-6" />Experiencia
+      </h2>
+      <Experience />
+    </SectionContainer>
   </main>
 </Layout>

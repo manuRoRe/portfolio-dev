@@ -43,11 +43,18 @@ const { title } = Astro.props;
   }
   html {
     font-family: "Readex Pro Variable", system-ui, sans-serif;
+    scroll-behavior: smooth;
   }
   body {
     background: #050505;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    mini-height: 100vh;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 </style>
