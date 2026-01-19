@@ -1,14 +1,152 @@
-<header class="flex justify-between items-center p-5 w-full xl:w-280 mx-auto">
+---
+import BurguerIcon from "../icons/Burguer.astro";
+---
+
+<header
+  class="flex justify-between items-center p-5 w-full xl:w-280 mx-auto relative"
+>
+  <!-- Avatar / Logo -->
   <img
     class="rounded-full size-12 object-cover"
     src="./fotoPersonal.jpg"
-    alt="Manuel Romero "
+    alt="Manuel Romero"
   />
 
-  <nav class="flex flex-row gap-x-10 opacity-80">
+  <!-- NAV DESKTOP -->
+  <nav class="hidden sm:flex gap-x-10 opacity-80">
     <a href="#top">Inicio</a>
     <a href="#sobreMi">Sobre Mi</a>
     <a href="#experiencia">Experiencia</a>
     <a href="#contacto">Contacto</a>
   </nav>
+
+  <!-- BOTÓN AVATAR (MÓVIL) -->
+  <!--   <button id="dropdownBtn" class="sm:hidden overflow-hidden">
+    <BurguerIcon />
+  </button> -->
+  <button
+    id="dropdownInformationButton"
+    class="sm:hidden overflow-hidden inline-flex items-center justify-center text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+    type="button"
+  >
+    <BurguerIcon class="size-10" />
+  </button>
+  <!-- Dropdown menu -->
+  <div
+    id="dropdownInformation"
+    class="absolute right-4 top-20 z-10 w-56 hidden sm:hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-72"
+  >
+    <div class="p-2">
+      <div
+        class="flex items-center px-2.5 p-2 space-x-1.5 text-sm bg-neutral-secondary-strong rounded"
+      >
+        <img
+          class="w-8 h-8 rounded-full"
+          src="./fotoPersonal.jpg"
+          alt="Rounded avatar"
+        />
+        <div class="text-sm">
+          <div class="font-medium text-heading">Manuel Romero</div>
+        </div>
+        <span
+          class="bg-brand-softer border border-brand-subtle text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded ms-auto"
+          >Developer</span
+        >
+      </div>
+    </div>
+    <ul
+      class="px-2 pb-2 text-sm text-body font-medium"
+      aria-labelledby="dropdownInformationButton"
+    >
+      <li>
+        <a
+          href="#top"
+          class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+        >
+          Inicio
+        </a>
+      </li>
+      <li>
+        <a
+          href="#sobreMi"
+          class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+        >
+          Sobre Mi
+        </a>
+      </li>
+      <li>
+        <a
+          href="#experiencia"
+          class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+        >
+          Experiencia
+        </a>
+      </li>
+      <li>
+        <a
+          href="#contacto"
+          class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+        >
+          Contacto
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!--   <div
+    id="dropdownMenu"
+    class="hidden absolute right-5 top-20 z-10 w-56
+           bg-neutral-primary-medium border border-default-medium
+           rounded-base shadow-lg sm:hidden"
+  >
+    <ul class="p-2 text-sm font-medium">
+      <li>
+        <a
+          href="#top"
+          class="block p-2 rounded hover:bg-neutral-tertiary-medium"
+        >
+          Inicio
+        </a>
+      </li>
+      <li>
+        <a
+          href="#sobreMi"
+          class="block p-2 rounded hover:bg-neutral-tertiary-medium"
+        >
+          Sobre Mi
+        </a>
+      </li>
+      <li>
+        <a
+          href="#experiencia"
+          class="block p-2 rounded hover:bg-neutral-tertiary-medium"
+        >
+          Experiencia
+        </a>
+      </li>
+      <li>
+        <a
+          href="#contacto"
+          class="block p-2 rounded hover:bg-neutral-tertiary-medium"
+        >
+          Contacto
+        </a>
+      </li>
+    </ul>
+  </div> -->
 </header>
+
+<script is:inline>
+  const btn = document.getElementById("dropdownInformationButton");
+  const menu = document.getElementById("dropdownInformation");
+
+  btn?.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  // Cerrar al hacer click fuera
+  document.addEventListener("click", (e) => {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.add("hidden");
+    }
+  });
+</script>
