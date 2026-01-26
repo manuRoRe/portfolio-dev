@@ -1,0 +1,75 @@
+---
+import LaravelIcon from "../icons/Laravel.astro";
+import MySQLIcon from "../icons/MySQL.astro";
+
+const TAGS = {
+  LARAVEL: {
+    name: "Laravel",
+    class: "text-red-700 bg-gray-800/40",
+    icon: LaravelIcon,
+  },
+  MySQL: {
+    name: "MySQL",
+    class: "text-[#F29111] bg-white",
+    icon: MySQLIcon,
+  },
+};
+const PROJECTS = [
+  {
+    title: "Luna - Tu compañera de bienestar femenino",
+    description:
+      "Luna es una aplicación web diseñada para ayudar a las mujeres a cuidar su salud y bienestar emocional. Ofrece seguimiento del ciclo menstrual, consejos de bienestar y una comunidad de apoyo.",
+    link: "https://github.com/manuRoRe/Luna.git",
+    github: "https://github.com/manuRoRe/Luna.git",
+    image: "public/projects/mockupLuna.webp",
+    tags: [TAGS.LARAVEL, TAGS.MySQL],
+  },
+  {
+    title: "Project Two",
+    description: "Description for project two.",
+    link: "",
+    github: "",
+    image: "",
+    tags: [],
+  },
+  // Add more projects as needed
+];
+---
+
+{
+  PROJECTS.map((project) => (
+    <div class=" rounded-lg p-6 mb-6">
+      <h3 class="text-2xl text-amber-100 font-semibold text-heading my-2">
+        {project.title}
+      </h3>
+      <p class="text-gray-300 text-lg mb-4 text-pretty">
+        {project.description}
+      </p>
+      <ul class="flex gap-x-4 flex-wrap mb-4">
+        {project.tags.map((tag) => (
+          <li>
+            <span
+              class={`inline-flex items-center gap-2 px-2 py-1 mr-2 mb-2 text-sm font-medium rounded-full ${tag.class}`}
+            >
+              <tag.icon class="size-6" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <a
+        href={project.link}
+        class="text-blue-400 hover:underline"
+        target="_blank"
+        rel="noopener"
+      >
+        Ver Proyecto
+        <img
+          class="mt-4 rounded shadow-2xl shadow-blue-200"
+          src={project.image}
+          alt={"Captura de pantalla de " + project.title}
+        />
+      </a>
+    </div>
+  ))
+}
