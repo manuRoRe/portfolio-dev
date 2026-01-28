@@ -1,0 +1,66 @@
+---
+import type { Tag } from "./Tags.astro";
+
+const { project } = Astro.props;
+---
+
+<div class="rounded-lg p-6 mb-6">
+  <h3 class="text-2xl text-amber-100 font-semibold my-2">
+    {project.title}
+  </h3>
+
+  {
+    project.description.map((text: String) => (
+      <p class="text-gray-300 text-lg mb-4">{text}</p>
+    ))
+  }
+
+  <ul class="flex gap-x-4 flex-wrap mb-4">
+    {
+      project.tags.map((tag: Tag) => (
+        <li>
+          <span
+            class={`inline-flex items-center gap-2 px-4 py-1 mb-2 text-sm font-medium rounded-full ${tag.class}`}
+          >
+            <tag.icon class="size-6" />
+            {tag.name}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <a
+    href={project.link}
+    class="text-blue-400 hover:underline"
+    target="_blank"
+    rel="noopener"
+  >
+    Ver Proyecto
+    <img
+      class="mt-4 rounded shadow-xl shadow-blue-200"
+      src={project.image}
+      alt={"Captura de pantalla de " + project.title}
+    />
+  </a>
+</div>
+<script>
+  const button = document.getElementById("toggle-projects");
+  const extraProjects = document.getElementById("extra-projects");
+
+  let expanded = false;
+
+  button?.addEventListener("click", () => {
+    expanded = !expanded;
+
+    if (expanded) {
+      extraProjects?.classList.remove("max-h-0", "opacity-0");
+      extraProjects?.classList.add("max-h-[2000px]", "opacity-100");
+      button.textContent = "Mostrar menos";
+    } else {
+      extraProjects?.classList.remove("max-h-[2000px]", "opacity-100");
+      extraProjects?.classList.add("max-h-0", "opacity-0");
+      button.textContent = "Mostrar más…";
+    }
+  });
+</script>

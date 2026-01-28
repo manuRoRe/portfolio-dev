@@ -1,62 +1,87 @@
 ---
 import { TAGS } from "./Tags.astro";
+import ProjectCard from "./ProjectCard.astro";
 
 const PROJECTS = [
   {
     title: "Luna - Tu compañera de bienestar femenino",
-    description:
+    description: [
       "Luna es una aplicación web diseñada para ayudar a las mujeres a cuidar su salud y bienestar emocional. Ofrece seguimiento del ciclo menstrual, consejos de bienestar y una comunidad de apoyo.",
+    ],
     link: "https://github.com/manuRoRe/Luna.git",
     github: "https://github.com/manuRoRe/Luna.git",
     image: "public/projects/mockupLuna.webp",
     tags: [TAGS.LARAVEL, TAGS.MySQL, TAGS.TAILWIND, TAGS.GITHUB],
   },
   {
-    title: "Teslo Shop - Tienda online replicada de Tesla",
-    description:
-      "Teslo Shop es una tienda online replicando el estilo de Tesla, con un diseño moderno y funcional. He usado TanStack Query para las consultas al Backend y buenas parcticas de React como componentes pequeños con responsabilidad única, custom hooks para lógica reutilizable y estructura de archivos por feature.",
-    link: "",
+    title: "Teslo Shop",
+    description: [
+      "Teslo Shop es una tienda online inspirada en el diseño de Tesla, con una interfaz moderna, limpia y orientada al rendimiento.",
+      "La aplicación está desarrollada en React y se conecta a un backend mediante TanStack Query, lo que permite una gestión eficiente de las peticiones, el cacheo de datos y la sincronización automática del estado.",
+      "Para optimizar la experiencia de usuario, se ha implementado lazy loading de páginas, reduciendo los tiempos de carga iniciales.",
+      "El proyecto sigue buenas prácticas de React, como componentes pequeños con responsabilidad única, custom hooks para lógica reutilizable y una arquitectura basada en features que facilita la escalabilidad y el mantenimiento.",
+    ],
+    link: "https://github.com/manuRoRe/teslo-shop.git",
     github: "https://github.com/manuRoRe/teslo-shop.git",
     image: "public/projects/mockupTeslaShop.webp",
     tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.GITHUB],
   },
+  {
+    title: "Heroes App",
+    description: [
+      "Esta aplicación permite buscar y visualizar información sobre superhéroes a través de una API.",
+      "Testing en las partes mas importantes de la aplicación con React Testing Library.",
+      "El proyecto sigue buenas prácticas de React, como componentes pequeños con responsabilidad única, custom hooks para lógica reutilizable y una arquitectura basada en features que facilita la escalabilidad y el mantenimiento.",
+    ],
+    link: "https://github.com/manuRoRe/heroes-app.git",
+    github: "https://github.com/manuRoRe/heroes-app.git",
+    image: "public/projects/mockupHeroesApp.webp",
+    tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.GITHUB],
+  },
 ];
+
+const MAX_VISIBLE = 2;
+const hasMoreProjects = PROJECTS.length > MAX_VISIBLE;
 ---
 
+<div id="projects-container">
+  {
+    PROJECTS.slice(0, MAX_VISIBLE).map((project) => (
+      <ProjectCard project={project} />
+    ))
+  }
+
+  <div
+    id="extra-projects"
+    class="overflow-hidden
+      max-h-0
+      opacity-0
+      transition-all
+      duration-500
+      ease-in-out"
+  >
+    {
+      PROJECTS.slice(MAX_VISIBLE).map((project) => (
+        <ProjectCard project={project} />
+      ))
+    }
+  </div>
+</div>
+
 {
-  PROJECTS.map((project) => (
-    <div class=" rounded-lg p-6 mb-6">
-      <h3 class="text-2xl text-amber-100 font-semibold text-heading my-2">
-        {project.title}
-      </h3>
-      <p class="text-gray-300 text-lg mb-4 text-pretty text-wrap">
-        {project.description}
-      </p>
-      <ul class="flex gap-x-4 flex-wrap mb-4">
-        {project.tags.map((tag) => (
-          <li>
-            <span
-              class={`inline-flex items-center gap-2 px-4 py-1 mr-2 mb-2 text-sm font-medium rounded-full ${tag.class}`}
-            >
-              <tag.icon class="size-6" />
-              {tag.name}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <a
-        href={project.link}
-        class="text-blue-400 hover:underline"
-        target="_blank"
-        rel="noopener"
-      >
-        Ver Proyecto
-        <img
-          class="mt-4 rounded shadow-2xl shadow-blue-200"
-          src={project.image}
-          alt={"Captura de pantalla de " + project.title}
-        />
-      </a>
-    </div>
-  ))
+  hasMoreProjects && (
+    <button
+      id="toggle-projects"
+      class="
+      text-lg
+      mt-6
+      text-blue-400
+      hover:text-blue-300
+      transition-colors
+      duration-300
+    "
+    >
+      Mostrar más…
+    </button>
+  )
 }

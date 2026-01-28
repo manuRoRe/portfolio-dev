@@ -6,6 +6,12 @@ import TailwindIcon from "../icons/Tailwind.astro";
 import ReactIcon from "../icons/React.astro";
 import TypeScriptIcon from "../icons/TypeScript.astro";
 
+export interface Tag {
+  name: string;
+  class: string;
+  icon: any;
+}
+
 export const TAGS = {
   LARAVEL: {
     name: "Laravel",
