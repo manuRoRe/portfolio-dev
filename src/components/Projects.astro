@@ -1,19 +1,6 @@
 ---
-import LaravelIcon from "../icons/Laravel.astro";
-import MySQLIcon from "../icons/MySQL.astro";
+import { TAGS } from "./Tags.astro";
 
-const TAGS = {
-  LARAVEL: {
-    name: "Laravel",
-    class: "text-red-700 bg-gray-800/40",
-    icon: LaravelIcon,
-  },
-  MySQL: {
-    name: "MySQL",
-    class: "text-[#F29111] bg-white",
-    icon: MySQLIcon,
-  },
-};
 const PROJECTS = [
   {
     title: "Luna - Tu compañera de bienestar femenino",
@@ -22,17 +9,17 @@ const PROJECTS = [
     link: "https://github.com/manuRoRe/Luna.git",
     github: "https://github.com/manuRoRe/Luna.git",
     image: "public/projects/mockupLuna.webp",
-    tags: [TAGS.LARAVEL, TAGS.MySQL],
+    tags: [TAGS.LARAVEL, TAGS.MySQL, TAGS.TAILWIND, TAGS.GITHUB],
   },
   {
-    title: "Project Two",
-    description: "Description for project two.",
+    title: "Teslo Shop - Tienda online replicada de Tesla",
+    description:
+      "Teslo Shop es una tienda online replicando el estilo de Tesla, con un diseño moderno y funcional. He usado TanStack Query para las consultas al Backend y buenas parcticas de React como componentes pequeños con responsabilidad única, custom hooks para lógica reutilizable y estructura de archivos por feature.",
     link: "",
-    github: "",
-    image: "",
-    tags: [],
+    github: "https://github.com/manuRoRe/teslo-shop.git",
+    image: "public/projects/mockupTeslaShop.webp",
+    tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.GITHUB],
   },
-  // Add more projects as needed
 ];
 ---
 
@@ -42,14 +29,14 @@ const PROJECTS = [
       <h3 class="text-2xl text-amber-100 font-semibold text-heading my-2">
         {project.title}
       </h3>
-      <p class="text-gray-300 text-lg mb-4 text-pretty">
+      <p class="text-gray-300 text-lg mb-4 text-pretty text-wrap">
         {project.description}
       </p>
       <ul class="flex gap-x-4 flex-wrap mb-4">
         {project.tags.map((tag) => (
           <li>
             <span
-              class={`inline-flex items-center gap-2 px-2 py-1 mr-2 mb-2 text-sm font-medium rounded-full ${tag.class}`}
+              class={`inline-flex items-center gap-2 px-4 py-1 mr-2 mb-2 text-sm font-medium rounded-full ${tag.class}`}
             >
               <tag.icon class="size-6" />
               {tag.name}

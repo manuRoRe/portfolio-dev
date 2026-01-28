@@ -1,0 +1,41 @@
+---
+import GithubIcon from "../icons/Github.astro";
+import LaravelIcon from "../icons/Laravel.astro";
+import MySQLIcon from "../icons/MySQL.astro";
+import TailwindIcon from "../icons/Tailwind.astro";
+import ReactIcon from "../icons/React.astro";
+import TypeScriptIcon from "../icons/TypeScript.astro";
+
+export const TAGS = {
+  LARAVEL: {
+    name: "Laravel",
+    class: "text-red-700 bg-gray-600/40",
+    icon: LaravelIcon,
+  },
+  MySQL: {
+    name: "MySQL",
+    class: "text-[#F29111] bg-white",
+    icon: MySQLIcon,
+  },
+  TAILWIND: {
+    name: "tailwindcss",
+    class: "bg-gray-600/40",
+    icon: TailwindIcon,
+  },
+  GITHUB: {
+    name: "GitHub",
+    class: "bg-[#8534F3]/30 text-[#8534F3]",
+    icon: GithubIcon,
+  },
+  REACT: {
+    name: "React",
+    class: "bg-blue-600/30 text-[#58C4DC]",
+    icon: ReactIcon,
+  },
+  TYPESCRIPT: {
+    name: "TypeScript",
+    class: "bg-white text-[#3178C6]",
+    icon: TypeScriptIcon,
+  },
+};
+---
